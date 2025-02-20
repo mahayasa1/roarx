@@ -1,0 +1,87 @@
+.separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Jarak antar elemen */
+    margin: 50px 0;
+    position: relative;
+}
+
+/* Garis di kiri dan kanan */
+.separator .line {
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(90deg, #313131, #292929); /* Gradasi warna */
+    border-radius: 10px; /* Membuat garis melengkung */
+    animation: shimmer 3s infinite; /* Efek animasi */
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+.container {
+    max-width: 1500px;
+    margin: 20px auto;
+    padding: 20px;
+}
+.ab h1, h2, h3 {
+    color: #333;
+}
+.ab p {
+    color: #555;
+    margin: 10px 0;
+}
+.ab ul {
+    padding-left: 20px;
+    color: #555;
+}
+.ab ul li {
+    margin-bottom: 10px;
+}
+.ab a {
+    color: #007bff;
+    text-decoration: none;
+}
+.ab a:hover {
+    text-decoration: underline;
+}
+
+.team {
+    display: flex; /* Membuat elemen anak dalam satu baris */
+    justify-content: left; /* Elemen berada di tengah */
+    align-items: center; /* Menyelaraskan elemen secara vertikal */
+    gap: 10px; /* Mengurangi jarak antar elemen */
+    flex-wrap: wrap; /* Memungkinkan elemen berpindah baris jika layar kecil */
+}
+
+.member {
+    text-align: center; /* Memusatkan teks di bawah gambar */
+    margin: 50px; /* Memberi sedikit jarak tambahan jika diperlukan */
+}
+
+.w-24 {
+    width: 80px; /* Ukuran gambar lebih kecil */
+    border-radius: 50%; /* Membuat gambar berbentuk lingkaran */
+}
+
+.member h4 {
+    margin: 0; /* Menghapus margin default */
+}
+
+.member p {
+    margin: 0; /* Menghapus margin default */
+    font-size: 14px; /* Ukuran font teks deskripsi */
+    color: #323232; /* Warna teks lebih lembut */
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center; /* Pusatkan horizontal */
+    align-items: center; /* Pusatkan vertikal */
+}
