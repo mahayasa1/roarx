@@ -11,6 +11,7 @@
     @vite('resources/css/app.css')
     @vite('resources/css/style.css')
     <title>project</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body class="h-full">
   <div class="min-h-full">

@@ -3,7 +3,7 @@
     <div class="flex h-16 items-center justify-between gap-x-4"> <!-- Menggunakan flexbox -->
       <div class="flex items-center">
         <div class="flex-shrink-0">
-          <img class="h-9 w-9" src="{{ asset('asset/img/clutch.png') }}" alt="logo">
+          <img class="h-14 w-14" src="{{ asset('asset/img/logo.png') }}" alt="logo">
         </div>
         <div class="hidden md:flex flex-grow justify-center">
           <div class="ml-10 flex items-baseline space-x-4">
@@ -21,11 +21,11 @@
                 x-transition
                 class="absolute left-0 z-10 mt-2 w-40 bg-white rounded-lg shadow-lg overflow-hidden"
                 x-cloak>
-                <x-nav-link href="/bikez" :active="request()->is('/bikez')" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Bike</x-nav-link>
-                <x-nav-link href="/carz" :active="request()->is('/carz')" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Cars</x-nav-link>
+                <x-nav-link href="/bikes" :active="request()->is('/bikes')" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Bike</x-nav-link>
+                <x-nav-link href="/cars" :active="request()->is('/cars')" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Cars</x-nav-link>
               </div>
             </div>
-            <x-nav-link href="/users" :active="request()->is('/users')">USERS</x-nav-link>
+            <x-nav-link href="/people" :active="request()->is('/people')">USERS</x-nav-link>
           </div>
         </div>
       </div>

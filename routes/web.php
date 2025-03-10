@@ -2,16 +2,19 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BikeController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\PeopleController;
 
 // users
 
 Route::get('/index', function () {
     return view('users.index', ['title' => 'Home Page']);
 });
-Route::get('/bikes', function () {
+Route::get('/bike', function () {
     return view('users.bikes', ['title' => 'Sell Bikes']);
 });
-Route::get('/cars', function () {
+Route::get('/car', function () {
     return view('users.cars', ['title' => 'Sell Cars']);
 });
 Route::get('/about', function () {
@@ -22,12 +25,16 @@ Route::get('/about', function () {
 Route::get('/indexs', function () {
     return view('admin.index', ['title' => 'Home Page']);
 });
-Route::get('/bikez', function () {
-    return view('admin.bikez', ['title' => 'Bikes']);
-});
 
 
+//cars
+Route::resource('cars', CarController::class);
 
+// bikes
+Route::resource('bikes', BikeController::class);
+
+//people
+Route::resource('people', PeopleController::class);
 
 // auth
 Route::middleware('auth')->group(function () {
