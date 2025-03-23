@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\user;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class PeopleController extends Controller
@@ -13,8 +13,8 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        $peoples = user::all();
-        return view('admin.people.index', ['title' => 'People', 'people' => $peoples]);
+        $people = User::all();
+        return view('admin.people.index', ['title' => 'People', 'people' => $people]);
     }
 
     /**
@@ -49,23 +49,26 @@ class PeopleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(user $peoples)
+    public function show(User $people)
     {
-        return view('admin.people.show', ['title' => $peoples->name, 'people' => $peoples]);
+        return view('admin.people.show', ['title' => $people->name, 'people' => $people]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(user $peoples)
-    {
-        return view('admin.people.edit', ['title' => $peoples->name, 'people' => $peoples]);
-    }
+    public function edit(User $peoples)
+{
+    return view('admin.people.edit', [
+        'title' => 'Edit People',
+        'people' => $peoples
+    ]);
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, user $peoples)
+    public function update(Request $request, User $peoples)
     {
         $request->validate([
             'name'=> 'required|string',
@@ -84,7 +87,7 @@ class PeopleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(user $peoples)
+    public function destroy(User $peoples)
     {
         user::destroy($peoples->id);
         return redirect()->route('people.index')->with('success', 'People deleted successfully.');

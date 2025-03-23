@@ -37,6 +37,13 @@
                 <label for="password_confirmation" class="form-label">Password Confirmation</label>
                 <input type="password" name="password_confirmation" class="form-control" required>
             </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select name="role" class="form-select" required>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary w-100">Register</button>
             <p class="mt-2 text-center">Sudah punya akun? <a href="{{ route('login') }}">Login</a></p>
         </form>

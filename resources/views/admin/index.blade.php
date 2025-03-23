@@ -29,35 +29,23 @@
                             </thead>
                             <tbody class="divide-y divide-gray-200">
                                 <!-- Example Vehicle Row -->
+                                @if(isset($vehicles) && count($vehicles) > 0)
+                                @foreach ( $vehicles as $index => $vehicle)
                                 <tr class="hover:bg-gray-50 transition">
-                                    <td class="px-6 py-4 text-gray-800">1</td>
+                                    <td class="px-6 py-4 text-gray-800">{{ $index + 1 }}</td>
                                     <td class="px-6 py-4">
-                                        <img src="{{ asset('asset/img/sportbike.png') }}" class="w-16 h-16 object-cover rounded-md">
+                                        <img src="{{ asset('storage/' . $vehicle['image']) }}" class="w-16 h-16 object-cover rounded-md">
                                     </td>
-                                    <td class="px-6 py-4 text-gray-900 font-semibold">HONDA</td>
-                                    <td class="px-6 py-4 text-gray-500">White</td>
-                                    <td class="px-6 py-4 text-gray-800 font-bold">$3,500</td>
-                                    {{-- <td class="px-6 py-4">
-                                        <a href="#" class="text-blue-500 hover:text-blue-700">Edit</a>
-                                        <span class="mx-2 text-gray-300">|</span>
-                                        <a href="#" class="text-red-500 hover:text-red-700">Delete</a>
-                                    </td> --}}
+                                    <td class="px-6 py-4 text-gray-900 font-semibold">{{ $vehicle['brand'] }}</td>
+                                    <td class="px-6 py-4 text-gray-500">{{ $vehicle['color'] }}</td>
+                                    <td class="px-6 py-4 text-gray-800 font-bold">Rp.{{ $vehicle['price'] }}</td>
                                 </tr>
-                                <!-- Example Vehicle Row -->
-                                <tr class="hover:bg-gray-50 transition">
-                                    <td class="px-6 py-4 text-gray-800">2</td>
-                                    <td class="px-6 py-4">
-                                        <img src="{{ asset('asset/img/car.png') }}" class="w-16 h-16 object-cover rounded-md">
-                                    </td>
-                                    <td class="px-6 py-4 text-gray-900 font-semibold">BMW</td>
-                                    <td class="px-6 py-4 text-gray-500">Blue</td>
-                                    <td class="px-6 py-4 text-gray-800 font-bold">$10,000</td>
-                                    {{-- <td class="px-6 py-4">
-                                        <a href="#" class="text-blue-500 hover:text-blue-700">Edit</a>
-                                        <span class="mx-2 text-gray-300">|</span>
-                                        <a href="#" class="text-red-500 hover:text-red-700">Delete</a>
-                                    </td> --}}
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td class="px-6 py-4 text-gray-800" colspan="4">No data available</td>
                                 </tr>
+                                @endif                           
                             </tbody>
                         </table>
                     </div>
@@ -77,17 +65,20 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
-                                <!-- Example User Row -->
+                                @if(isset($users) && count($users) > 0)
+                                @foreach ($users as $index => $user)
                                 <tr class="hover:bg-gray-50 transition">
-                                    <td class="px-6 py-4 text-gray-900 font-semibold">John Doe</td>
-                                    <td class="px-6 py-4 text-gray-500">john.doe@example.com</td>
-                                    <td class="px-6 py-4 text-gray-800 font-bold">Admin</td>
-                                    {{-- <td class="px-6 py-4">
-                                        <a href="#" class="text-blue-500 hover:text-blue-700">Edit</a>
-                                        <span class="mx-2 text-gray-300">|</span>
-                                        <a href="#" class="text-red-500 hover:text-red-700">Delete</a>
-                                    </td> --}}
+                                    <td class="px-6 py-4 text-gray-800">{{ $index + 1 }}</td>
+                                    <td class="px-6 py-4 text-gray-900 font-semibold">{{ $user->name }}</td>
+                                    <td class="px-6 py-4 text-gray-500">{{ $user->email }}</td>
+                                    <td class="px-6 py-4 text-gray-800 font-bold">{{ $user->role }}</td>
                                 </tr>
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td class="px-6 py-4 text-gray-800" colspan="3">No data available</td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>

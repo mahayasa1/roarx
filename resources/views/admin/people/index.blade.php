@@ -20,15 +20,15 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                    @foreach ($people as $index => $person)
+                    @foreach ($people as $index => $peoples)
                         <tr class="hover:bg-gray-50 transition">
                             <td class="px-6 py-4 text-gray-800">{{ $index + 1 }}</td>
-                            <td class="px-6 py-4 text-gray-900 font-semibold">{{ $person->name }}</td>
-                            <td class="px-6 py-4 text-gray-500">{{ $person->email }}</td> 
-                            <td class="px-6 py-4 text-gray-500">{{ $person->role }}</td>
+                            <td class="px-6 py-4 text-gray-900 font-semibold">{{ $peoples->name }}</td>
+                            <td class="px-6 py-4 text-gray-500">{{ $peoples->email }}</td> 
+                            <td class="px-6 py-4 text-gray-500">{{ $peoples->role }}</td>
                             <td class="px-6 py-4">
-                                <a href="{{ route('people.edit', $person->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
-                                <form action="{{ route('people.destroy', $person->id) }}" method="POST" class="inline">
+                                <a href="{{ route('people.edit', $peoples->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                                <form action="{{ route('people.destroy', $peoples->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Delete</button>
@@ -36,6 +36,10 @@
                             </td>
                         </tr>
                     @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 </x-layout_admin>

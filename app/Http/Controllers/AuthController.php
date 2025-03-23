@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -21,12 +21,14 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:225|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:admin,user'
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' =>bcrypt( $request->password),
+            'password' =>Hash::make( $request->password),
+            'role' => $request->role
         ]);
 
         return redirect()->route('login')->with('success', 'You have been registered successfully');
@@ -47,15 +49,21 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard')->with('success', 'You have been logged in');
+            $user = Auth::user();
+            
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.index')->with('success', 'Welcome Admin');
+            } else {
+                return redirect()->route('user.index')->with('success', 'Welcome User');
+            }
         }
 
         return back()->withErrors('error', 'Invalid credentials');
     }
 
-    public function dashboard()
+    public function user()
     {
-        return view('dashboard', ['title' => 'Dashboard']);
+        return view('users.index', ['title' => 'Dashboard']);
     }
 
     public function logout()

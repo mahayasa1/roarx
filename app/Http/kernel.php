@@ -2,6 +2,8 @@
 
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\RoleMiddleware;
+use App\Http\Middleware\Authenticate;   
 
 class Kernel extends HttpKernel
 {
@@ -17,6 +19,12 @@ class Kernel extends HttpKernel
         EnsureFrontendRequestsAreStateful::class,
     ];
 
+    protected $routeMiddleware = [
+
+        'auth' => Authenticate::class,
+
+        'role' => RoleMiddleware::class,
+    ];
     /**
      * The application's route middleware groups.
      *

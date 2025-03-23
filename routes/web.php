@@ -1,16 +1,19 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\DashboardController;
+
+
+Route::get('/', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 // users
 
-Route::get('/index', function () {
-    return view('users.index', ['title' => 'Home Page']);
-});
 Route::get('/bike', function () {
     return view('users.bikes', ['title' => 'Sell Bikes']);
 });
@@ -22,9 +25,8 @@ Route::get('/about', function () {
 });
 
 // admin
-Route::get('/indexs', function () {
-    return view('admin.index', ['title' => 'Home Page']);
-});
+// Route::get('/indexs', [DashboardController::class, 'indexs']);
+
 
 
 //cars
@@ -34,7 +36,8 @@ Route::resource('cars', CarController::class);
 Route::resource('bikes', BikeController::class);
 
 //people
-Route::resource('people', PeopleController::class);
+Route::resource('people', PeopleController::class)->parameters([
+    'people' => 'peoples']);
 
 // auth
 Route::middleware('auth')->group(function () {
@@ -46,11 +49,18 @@ Route::middleware('auth')->group(function () {
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
-
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware('auth')->group(function (){
-    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/indexs',[DashboardController::class, 'indexs'])->name('admin.index');
 });
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/index', function () {
+        return view('users.index', ['title' => 'User Dashboard']);
+    });
+});
+
