@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('brand');
             $table->string('color');
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 15, 2);
             $table->timestamps();
         });
     }

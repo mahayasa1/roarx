@@ -6,7 +6,7 @@ use App\Http\Controllers\BikeController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -25,7 +25,6 @@ Route::get('/about', function () {
 });
 
 // admin
-// Route::get('/indexs', [DashboardController::class, 'indexs']);
 
 
 
@@ -60,7 +59,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/index', function () {
-        return view('users.index', ['title' => 'User Dashboard']);
-    });
+        return view('users.index', ['title' => '']);
+    })->name('users.index');
 });
 

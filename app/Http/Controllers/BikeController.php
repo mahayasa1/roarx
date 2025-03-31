@@ -9,10 +9,20 @@ use Illuminate\Support\Facades\Storage;
 class BikeController extends Controller
 {
     // Display a listing of the bikes
-    public function index()
+    public function index(Request $request)
     {
-        $bikes = Bike::all();
-        return view('admin.bikes.index', ['title' => 'Bikes', 'bikes' => $bikes]);
+        $query = $request->input('query');
+
+    if ($query) {
+        $bikes = Bike::where('brand', 'LIKE', "%$query%")
+            ->orWhere('color', 'LIKE', "%$query%")
+            ->orWhere('price', 'LIKE', "%$query%")
+            ->paginate(10);
+    } else {
+        $bikes = Bike::paginate(10);
+    }
+
+    return view('admin.bikes.index', ['title' => 'Bikes', 'bikes' => $bikes, 'query' => $query]);
     }
 
     // Show the form for creating a new bike

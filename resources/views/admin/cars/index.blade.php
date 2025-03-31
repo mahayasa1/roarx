@@ -25,7 +25,7 @@
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-6 py-4 text-gray-800">{{ $index + 1 }}</td>
                                 <td class="px-6 py-4">
-                                    <img src="{{ asset('storage/' . $car->image) }}" class="w-16 h-16 object-cover rounded-md">
+                                    <img src="{{ asset($car->image) }}" class="w-16 h-16 object-cover rounded-md">
                                 </td>
                                 <td class="px-6 py-4 text-gray-900 font-semibold">{{ $car->brand }}</td>
                                 <td class="px-6 py-4 text-gray-500">{{ $car->color }}</td>

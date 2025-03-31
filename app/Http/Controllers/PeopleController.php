@@ -11,10 +11,18 @@ class PeopleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $people = User::all();
-        return view('admin.people.index', ['title' => 'People', 'people' => $people]);
+        $query = $request->input('query');
+
+        if ($query) {
+            $people = User::where('name', 'LIKE', "%$query%")
+                ->orWhere('email', 'LIKE', "%$query%")
+                ->paginate(10);
+        } else {
+            $people = User::paginate(10);
+        }
+        return view('admin.people.index', ['title' => 'People', 'people' => $people, 'query' => $query]);
     }
 
     /**
